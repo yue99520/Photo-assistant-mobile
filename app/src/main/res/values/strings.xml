@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Photo Assistant</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="login_title">Login</string>
+    <string name="auth_submit">Enter</string>
+    <string name="auth_field_hint_email">Email:</string>
+    <string name="auth_field_hint_password">Password:</string>
+    <string name="location_entry_name">條目：</string>
+    <string name="location_entry_unit"> 項</string>
+</resources>
