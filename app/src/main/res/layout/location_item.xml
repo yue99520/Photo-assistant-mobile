@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/location_title"

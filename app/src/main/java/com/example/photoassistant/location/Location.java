@@ -2,6 +2,8 @@ package com.example.photoassistant.location;
 
 public class Location {
 
+    private double id;
+
     private double longitude;
 
     private double latitude;
@@ -9,6 +11,24 @@ public class Location {
     private String title;
 
     private String subtitle;
+
+    private int entryCount;
+
+    public double getId() {
+        return id;
+    }
+
+    public void setId(double id) {
+        this.id = id;
+    }
+
+    public int getEntryCount() {
+        return entryCount;
+    }
+
+    public void setEntryCount(int entryCount) {
+        this.entryCount = entryCount;
+    }
 
     public double getLongitude() {
         return longitude;
