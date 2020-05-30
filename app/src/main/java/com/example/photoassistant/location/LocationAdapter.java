@@ -11,14 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.photoassistant.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LocationAdapter extends RecyclerView.Adapter {
 
     private Context context;
 
-    private List<Location> locations = new ArrayList<>();
+    private List<Location> locations;
+
+    private OnItemClickListener onItemClickListener;
 
     public LocationAdapter(Context context, List<Location> locations) {
         this.context = context;
@@ -30,22 +31,24 @@ public class LocationAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(context).inflate(R.layout.location_item, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
+        LocationViewHolder locationViewHolder = new LocationViewHolder(view);
 
-        viewHolder.title = view.findViewById(R.id.location_title);
-        viewHolder.subtitle = view.findViewById(R.id.location_subtitle);
-        viewHolder.entryAmount = view.findViewById(R.id.location_entry_amount);
+        locationViewHolder.title = view.findViewById(R.id.location_title);
+        locationViewHolder.subtitle = view.findViewById(R.id.location_subtitle);
+        locationViewHolder.entryAmount = view.findViewById(R.id.location_entry_amount);
 
-        return viewHolder;
+        return locationViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ViewHolder locationHolder = (ViewHolder) holder;
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
+        final LocationViewHolder locationHolder = (LocationViewHolder) holder;
 
-        Location location = locations.get(position);
+        final Location currentBindLocation = locations.get(position);
 
-        locationHolder.setLocation(location);
+        locationHolder.setLocation(currentBindLocation);
+
+        initOnClickListener(locationHolder, currentBindLocation);
     }
 
     @Override
@@ -53,7 +56,40 @@ public class LocationAdapter extends RecyclerView.Adapter {
         return locations.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder{
+    public List<Location> getLocations() {
+        return locations;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener itemClickListener) {
+        this.onItemClickListener = itemClickListener;
+    }
+
+    private void initOnClickListener(LocationAdapter.LocationViewHolder viewHolder, final Location location) {
+
+        viewHolder.itemView.setClickable(true);
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+
+            private Location currentOnClickLocation = location;
+
+            @Override
+            public void onClick(View v) {
+
+                if (onItemClickListener != null) {
+
+                    onItemClickListener.onClick(v, currentOnClickLocation);
+
+                }
+            }
+        });
+    }
+
+    public interface OnItemClickListener{
+
+        void onClick(View v, Location onClickLocation);
+    }
+
+    static class LocationViewHolder extends RecyclerView.ViewHolder {
 
         private Location location;
 
@@ -63,15 +99,19 @@ public class LocationAdapter extends RecyclerView.Adapter {
 
         public TextView entryAmount;
 
-        public ViewHolder(@NonNull View itemView) {
+        public LocationViewHolder(@NonNull View itemView) {
             super(itemView);
         }
 
         public void setLocation(Location location) {
             this.location = location;
+            updateView();
+        }
+
+        public void updateView() {
             this.title.setText(location.getTitle());
             this.subtitle.setText(location.getSubtitle());
-            this.entryAmount.setText(location.getEntryCount());
+            this.entryAmount.setText(String.valueOf(location.getEntryCount()));
         }
 
         public Location getLocation() {

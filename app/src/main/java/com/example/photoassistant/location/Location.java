@@ -2,7 +2,7 @@ package com.example.photoassistant.location;
 
 public class Location {
 
-    private double id;
+    private long id;
 
     private double longitude;
 
@@ -14,11 +14,11 @@ public class Location {
 
     private int entryCount;
 
-    public double getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(long id) {
         this.id = id;
     }
 
