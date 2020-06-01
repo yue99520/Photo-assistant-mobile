@@ -25,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxHeight="60dp"
+            android:padding="10dp"
             app:layout_constraintTop_toBottomOf="@+id/location_detail_title"
             app:layout_constraintStart_toStartOf="parent"
             />
@@ -57,6 +58,7 @@
                     android:layout_marginTop="10dp"/>
 
                 <TextView
+                    android:id="@+id/location_detail_longitude"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="@id/longitude_string"
@@ -73,6 +75,7 @@
                     android:layout_marginTop="10dp" />
 
                 <TextView
+                    android:id="@+id/location_detail_latitude"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="@id/latitude_string"
@@ -81,6 +84,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <ImageButton
+                android:id="@+id/location_detail_map_button"
                 android:layout_weight="2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -91,6 +95,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ListView
+        android:id="@+id/location_detail_entry_list_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
