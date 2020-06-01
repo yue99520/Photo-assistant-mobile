@@ -12,4 +12,5 @@
     <string name="location_entry_unit"> 項</string>
     <string name="longitude">經度：</string>
     <string name="latitude">緯度：</string>
+    <string name="go_to_map">Go to map</string>
 </resources>
