@@ -2,7 +2,7 @@ package com.example.photoassistant.location;
 
 import android.os.Bundle;
 
-class LocationBundleTranslator {
+public class LocationBundleTranslator {
 
     private static final String ID = "LOCATION_ID";
     private static final String TITLE = "LOCATION_TITLE";
@@ -11,7 +11,7 @@ class LocationBundleTranslator {
     private static final String LONGITUDE = "LOCATION_LONGITUDE";
     private static final String ENTRY_AMOUNT = "LOCATION_ENTRY_AMOUNT";
 
-    static Location toLocation(Bundle bundle) {
+    public static Location toLocation(Bundle bundle) {
         Location location = new Location();
         location.setId(bundle.getLong(ID));
         location.setTitle(bundle.getString(TITLE));
@@ -22,7 +22,7 @@ class LocationBundleTranslator {
         return location;
     }
 
-    static Bundle toBundle(Location location) {
+    public static Bundle toBundle(Location location) {
         Bundle bundle = new Bundle();
         bundle.putLong(ID, location.getId());
         bundle.putString(TITLE, location.getTitle());

@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private void initFragment() {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         LocationListFragment locationListFragment = new LocationListFragment();
-        fragmentTransaction.replace(R.id.fragment_container_view_main, locationListFragment);
+        fragmentTransaction.replace(R.id.fragment_container_main_activity, locationListFragment);
         fragmentTransaction.commit();
     }
 }

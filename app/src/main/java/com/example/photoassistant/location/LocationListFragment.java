@@ -13,10 +13,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.photoassistant.R;
+import com.example.photoassistant.location.repository.HttpLocationRepository;
+import com.example.photoassistant.location.repository.LocationRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class LocationListFragment extends Fragment {
+
+    private LocationRepository locationRepository;
 
     private LocationAdapter locationAdapter;
 
@@ -27,6 +32,8 @@ public class LocationListFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        locationRepository = new HttpLocationRepository();
 
         locationList = new ArrayList<>();
 
@@ -53,7 +60,7 @@ public class LocationListFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("list_item", "On item click event");
+                Log.i("Location", "on item click");
                 intentToDetail(locationList.get(position));
             }
         });
@@ -76,40 +83,7 @@ public class LocationListFragment extends Fragment {
     }
 
     private void updateData() {
-        Location location = new Location();
-        location.setId(1);
-        location.setTitle("title1");
-        location.setSubtitle("sub title");
-        location.setEntryAmount(10);
-        location.setLongitude(13.123);
-        location.setLatitude(20.123);
-        this.locationList.add(location);
-
-        new Location();
-        location.setId(2);
-        location.setTitle("title1");
-        location.setSubtitle("sub title");
-        location.setEntryAmount(10);
-        location.setLongitude(13.123);
-        location.setLatitude(20.123);
-        this.locationList.add(location);
-
-        new Location();
-        location.setId(3);
-        location.setTitle("title1");
-        location.setSubtitle("sub title");
-        location.setEntryAmount(10);
-        location.setLongitude(13.123);
-        location.setLatitude(20.123);
-        this.locationList.add(location);
-
-        new Location();
-        location.setId(4);
-        location.setTitle("title1");
-        location.setSubtitle("sub title");
-        location.setEntryAmount(10);
-        location.setLongitude(13.123);
-        location.setLatitude(20.123);
-        this.locationList.add(location);
+        List<Location> locationList = locationRepository.getAllLocations();
+        this.locationList.addAll(locationList);
     }
 }
