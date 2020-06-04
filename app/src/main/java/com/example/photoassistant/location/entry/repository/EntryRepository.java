@@ -8,9 +8,9 @@ public interface EntryRepository {
 
     List<Entry> getAllEntries(long location);
 
-//    boolean create(Entry entry);
-//
-//    boolean update(Entry entry);
+    boolean create(Entry entry);
+
+    boolean update(Entry entry);
 //
 //    boolean delete(long entry);
 }

@@ -7,13 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.photoassistant.R;
 import com.example.photoassistant.location.Location;
 import com.example.photoassistant.location.LocationBundleTranslator;
+import com.example.photoassistant.location.entry.edit.EntryEditFragment;
 import com.example.photoassistant.location.entry.repository.EntryRepository;
 import com.example.photoassistant.location.entry.repository.HttpEntryRepository;
 
@@ -69,27 +74,35 @@ public class EntryListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.i("Entry", "on item click");
-                switchFragment(entryList.get(position));
+                loadEntryEditFragment(entryList.get(position));
             }
         });
 
         updateList();
     }
 
-    private void switchFragment(Entry entry) {
-        Toast.makeText(getContext(), entry.getTitle(), Toast.LENGTH_SHORT).show();
-        //todo switch fragment to target entry
+    private void loadEntryEditFragment(Entry entry) {
+        FragmentActivity fragmentActivity = getActivity();
+        if (fragmentActivity != null) {
+
+            FragmentManager fragmentManager = fragmentActivity.getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            EntryEditFragment fragment = EntryEditFragment.update(entry);
+
+            if (fragment != null) {
+                fragmentTransaction.replace(R.id.fragment_container_location_detail_activity, fragment);
+                fragmentTransaction.addToBackStack(null);
+            }
+            fragmentTransaction.commit();
+        }
     }
 
     private void updateList() {
 
-        updateData();
+        List<Entry> newData = entryRepository.getAllEntries(location.getId());
+
+        entryList.addAll(newData);
 
         entryAdapter.notifyDataSetChanged();
-    }
-
-    private void updateData() {
-        List<Entry> newData = entryRepository.getAllEntries(location.getId());
-        entryList.addAll(newData);
     }
 }

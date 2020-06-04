@@ -1,13 +1,16 @@
 package com.example.photoassistant.location.entry.repository;
 
+import android.util.Log;
+
 import com.example.photoassistant.location.entry.Entry;
-import com.example.photoassistant.location.entry.condition.StringCondition;
-import com.example.photoassistant.location.entry.repository.EntryRepository;
+import com.example.photoassistant.location.entry.condition.EventCondition;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HttpEntryRepository implements EntryRepository {
+
+    private String logTag = this.getClass().getSimpleName();
 
     @Override
     public List<Entry> getAllEntries(long location) {
@@ -15,16 +18,24 @@ public class HttpEntryRepository implements EntryRepository {
         Entry entry;
 
         for (int i = 1; i <= 15; i++) {
-            entry = new Entry();
+            entry = new Entry(new EventCondition("白天"));
             entry.setId(1);
             entry.setTitle("Bird");
             entry.setSubtitle("Subtitle");
-            entry.getConditions().add(new StringCondition("白天", 1));
-            entry.getConditions().add(new StringCondition("白天", 2));
-            entry.getConditions().add(new StringCondition("白天", 3));
-            entry.getConditions().add(new StringCondition("白天", 4));
             entryList.add(entry);
         }
         return entryList;
+    }
+
+    @Override
+    public boolean create(Entry entry) {
+        Log.i(logTag, "create entry");
+        return true;
+    }
+
+    @Override
+    public boolean update(Entry entry) {
+        Log.i(logTag, "update entry: " + entry.getId());
+        return true;
     }
 }

@@ -2,34 +2,26 @@ package com.example.photoassistant.location.entry;
 
 import com.example.photoassistant.location.entry.condition.Condition;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Entry {
 
-    private long id;
+    private long id = -1L;
 
-    private String title;
+    private boolean hasId;
 
-    private String subtitle;
+    private String title = "";
 
-    private List<Condition> conditions;
+    private String subtitle = "";
 
-    public Entry() {
-        conditions = new ArrayList<>();
+    private Condition condition;
+
+    public Entry(Condition condition) {
+        this.condition = condition;
+        this.hasId = false;
     }
 
     public boolean meetsSearch(String search) {
 
-        for (Condition condition : conditions) {
-
-            if (condition.meetCriteria(search)) {
-
-                return true;
-            }
-        }
-
-        return false;
+        return condition.meetCriteria(search);
     }
 
     public long getId() {
@@ -38,6 +30,11 @@ public class Entry {
 
     public void setId(long id) {
         this.id = id;
+        this.hasId = true;
+    }
+
+    public boolean hasId() {
+        return hasId;
     }
 
     public String getTitle() {
@@ -56,11 +53,11 @@ public class Entry {
         this.subtitle = subtitle;
     }
 
-    public List<Condition> getConditions() {
-        return conditions;
+    public Condition getCondition() {
+        return condition;
     }
 
-    public void setConditions(List<Condition> conditions) {
-        this.conditions = conditions;
+    public void setCondition(Condition condition) {
+        this.condition = condition;
     }
 }

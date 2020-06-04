@@ -1,7 +1,5 @@
 package com.example.photoassistant.location.entry.condition;
 
-import androidx.annotation.NonNull;
-
 public interface Condition {
 
     long getId();
@@ -10,5 +8,7 @@ public interface Condition {
 
     boolean meetCriteria(String s);
 
-    String getTitle();
+    String getDescribe();
+
+    ConditionType getType();
 }

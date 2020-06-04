@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="35dp"-->
+<!--        android:textSize="28sp"-->
+<!--        android:text="@string/entry_edit"-->
+<!--        android:layout_margin="10dp"-->
+<!--        />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textSize="20sp"
+            android:text="@string/entry_edit_title"
+            />
+
+        <EditText
+            android:id="@+id/entry_edit_title_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="24sp"
+            android:hint="@string/entry_edit_hint"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textSize="20sp"
+            android:text="@string/entry_edit_subtitle"
+            android:layout_marginTop="30dp"
+            />
+
+        <EditText
+            android:id="@+id/entry_edit_subtitle_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="24sp"
+            android:hint="@string/entry_edit_hint"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textSize="20sp"
+            android:text="@string/entry_edit_condition"
+            android:layout_marginTop="30dp"
+            />
+
+        <EditText
+            android:id="@+id/entry_edit_condition_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="24sp"
+            android:hint="@string/entry_edit_hint"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="100pt"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="end">
+        <Button
+            android:id="@+id/cancel_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/darker_gray"
+            android:text="@string/cancel"
+            android:layout_margin="5dp"/>
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#009688"
+            android:text="@string/save"
+            android:layout_margin="5dp"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

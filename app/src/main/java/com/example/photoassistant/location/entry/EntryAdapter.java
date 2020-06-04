@@ -50,7 +50,7 @@ public class EntryAdapter extends BaseAdapter {
             holder = new ViewHolder(
                     (TextView) convertView.findViewById(R.id.entry_item_title),
                     (TextView) convertView.findViewById(R.id.entry_item_subtitle),
-                    (TextView) convertView.findViewById(R.id.entry_item_condition_amount)
+                    (TextView) convertView.findViewById(R.id.entry_item_condition)
             );
 
             convertView.setTag(holder);
@@ -63,7 +63,7 @@ public class EntryAdapter extends BaseAdapter {
 
         holder.title.setText(entry.getTitle());
         holder.subtitle.setText(entry.getSubtitle());
-        holder.conditionAmount.setText(String.valueOf(entry.getConditions().size()));
+        holder.condition.setText(String.valueOf(entry.getCondition().getDescribe()));
 
         return convertView;
     }
@@ -71,12 +71,12 @@ public class EntryAdapter extends BaseAdapter {
     private static class ViewHolder {
         TextView title;
         TextView subtitle;
-        TextView conditionAmount;
+        TextView condition;
 
-        ViewHolder(TextView title, TextView subtitle, TextView conditionAmount) {
+        ViewHolder(TextView title, TextView subtitle, TextView condition) {
             this.title = title;
             this.subtitle = subtitle;
-            this.conditionAmount = conditionAmount;
+            this.condition = condition;
         }
     }
 }

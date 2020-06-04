@@ -15,4 +15,11 @@
     <string name="go_to_map">Go to map</string>
     <string name="entry_item_unit">項</string>
     <string name="entry_condition_name">條件</string>
+    <string name="entry_edit_title">Title</string>
+    <string name="entry_edit_hint">input here</string>
+    <string name="entry_edit_condition">Condition</string>
+    <string name="entry_edit">條目編輯</string>
+    <string name="save">儲存</string>
+    <string name="cancel">取消</string>
+    <string name="entry_edit_subtitle">Subtitle</string>
 </resources>
