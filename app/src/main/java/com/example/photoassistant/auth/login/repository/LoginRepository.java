@@ -1,13 +1,15 @@
-package com.example.photoassistant.db;
+package com.example.photoassistant.auth.login.repository;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-public class LoginInfo extends Repository {
+import com.example.photoassistant.db.Repository;
+
+public class LoginRepository extends Repository {
 
     private final String TABLE_NAME = "login_info";
 
-    public LoginInfo(Context context, String database) {
+    public LoginRepository(Context context, String database) {
         super(context, database);
     }
 

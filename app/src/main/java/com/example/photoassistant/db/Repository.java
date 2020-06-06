@@ -5,9 +5,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-abstract class Repository extends SQLiteOpenHelper {
+public abstract class Repository extends SQLiteOpenHelper {
 
-    Repository(Context context, String database) {
+    public Repository(Context context, String database) {
         super(context, database, null, 1);
     }
 

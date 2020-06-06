@@ -22,13 +22,23 @@
         android:id="@+id/login_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/login_email"
+        app:layout_constraintTop_toBottomOf="@id/app_title"
         android:layout_marginBottom="30dp"
         android:text="@string/login_title"
         android:textAlignment="center"
         android:gravity="center_horizontal"
         android:textSize="28sp"
         />
+
+    <ProgressBar
+        android:id="@+id/login_progress_dialog"
+        android:layout_width="30pt"
+        android:layout_height="30pt"
+        android:layout_marginTop="20pt"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_title" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -68,12 +78,23 @@
         android:autofillHints="password"
         />
 
+    <TextView
+        android:id="@+id/login_failure_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:maxHeight="30dp"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/login_password" />
+
     <Button
         android:id="@+id/login_submit"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:text="@string/auth_submit"
-        app:layout_constraintTop_toBottomOf="@id/login_password"
+        app:layout_constraintTop_toBottomOf="@id/login_failure_msg"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="20dp"

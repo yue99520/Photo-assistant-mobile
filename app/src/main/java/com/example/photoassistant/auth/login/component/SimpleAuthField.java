@@ -1,17 +1,18 @@
-package com.example.photoassistant.auth.component;
+package com.example.photoassistant.auth.login.component;
 
 import android.widget.EditText;
 
-import com.example.photoassistant.auth.ValidateException;
 import com.example.photoassistant.auth.login.AuthField;
 
 import java.util.regex.Pattern;
 
-public class SimpleAuthField implements AuthField {
+public abstract class SimpleAuthField implements AuthField {
 
     private final EditText editText;
 
     private final String REGEX;
+
+    private ValidateListener validateListener;
 
     public SimpleAuthField(EditText editText, String REGEX) {
         this.editText = editText;
@@ -24,12 +25,22 @@ public class SimpleAuthField implements AuthField {
     }
 
     @Override
-    public void validate() throws ValidateException {
+    public void validate() {
         String content = getText();
 
-        if ( !isMatchRegex(content)) {
-            throw new ValidateException("Invalid Pattern!");
+        if (validateListener != null) {
+            if (isMatchRegex(content)) {
+                validateListener.onValidateSuccess(getFieldName());
+            } else {
+                validateListener.onValidateFailure(getFieldName());
+            }
         }
+    }
+
+    public abstract String getFieldName();
+
+    public void setValidateListener(ValidateListener validateListener) {
+        this.validateListener = validateListener;
     }
 
     @Override
@@ -45,5 +56,12 @@ public class SimpleAuthField implements AuthField {
     private boolean isMatchRegex(String content) {
         Pattern pattern = Pattern.compile(REGEX);
         return pattern.matcher(content).matches();
+    }
+
+    public static interface ValidateListener {
+
+        void onValidateSuccess(String fieldName);
+
+        void onValidateFailure(String fieldName);
     }
 }
