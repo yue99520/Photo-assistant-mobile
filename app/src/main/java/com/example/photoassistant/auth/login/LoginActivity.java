@@ -1,6 +1,5 @@
 package com.example.photoassistant.auth.login;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,10 +29,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private TextView errorMsg;
 
+    private LoginRepository loginRepository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        loginRepository = new LoginRepository(this, App.SQLite_DATABASE_NAME);
         init();
         settingLoginListeners();
     }
@@ -87,11 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, result.isSuccess() ? "登入成功" : "登入失敗", Toast.LENGTH_SHORT).show();
 
         if (result.isSuccess()) {
-            LoginRepository loginRepository = new LoginRepository(this, App.SQLite_DATABASE_NAME);
-            ContentValues values = new ContentValues();
-            values.put("api_token", result.getToken());
-            loginRepository.insert(values);
-            loginRepository.close();
+            loginRepository.updateToken(result.getToken());
             enterApp();
         } else {
             errorMsg.setText(result.getMsg());
