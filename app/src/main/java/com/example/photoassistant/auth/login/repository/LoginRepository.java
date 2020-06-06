@@ -5,14 +5,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.photoassistant.config.App;
 import com.example.photoassistant.db.Repository;
 
 public class LoginRepository extends Repository {
 
     private final String TABLE_NAME = "login_info";
 
-    public LoginRepository(Context context, String database) {
-        super(context, database);
+    public LoginRepository(Context context) {
+        super(context, App.SQLite_DATABASE_NAME);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.example.photoassistant.auth.login;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -18,8 +19,8 @@ import com.example.photoassistant.auth.login.component.LoginComponent;
 import com.example.photoassistant.auth.login.component.PasswordEditText;
 import com.example.photoassistant.auth.login.component.SimpleAuthField;
 import com.example.photoassistant.auth.login.repository.LoginRepository;
+import com.example.photoassistant.auth.request.CheckLoginRequest;
 import com.example.photoassistant.auth.request.LoginRequest;
-import com.example.photoassistant.config.App;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -35,7 +36,17 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        loginRepository = new LoginRepository(this, App.SQLite_DATABASE_NAME);
+        LoginChecker.check(this, new CheckLoginRequest.CheckLoginListener() {
+            @Override
+            public void checkResult(boolean bool) {
+
+                Log.d(this.getClass().getSimpleName(), "try auto login: " + bool);
+                if (bool) {
+                    enterApp();
+                }
+            }
+        });
+        loginRepository = new LoginRepository(this);
         init();
         settingLoginListeners();
     }

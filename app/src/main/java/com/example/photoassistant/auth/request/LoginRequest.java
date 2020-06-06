@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class LoginRequest extends StringRequest {
 
-    private static String logTag = StringRequest.class.getSimpleName();
+    private static String logTag = LoginRequest.class.getSimpleName();
 
     private Data data;
 
@@ -62,14 +62,13 @@ public class LoginRequest extends StringRequest {
         private String msg = "";
 
         public String getToken() {
-            if (token != null && token.length() != 0) {
-                return token.split("|")[1].trim();
-            }
-            return "";
+            return this.token;
         }
 
         public void setToken(String token) {
-            this.token = token;
+            if (token != null && token.length() != 0) {
+                this.token = "Bearer " + token.split("\\|")[1].trim();
+            }
         }
 
         public boolean isSuccess() {
